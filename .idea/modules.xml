@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Jsoup.iml" filepath="$PROJECT_DIR$/Jsoup.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Jsoup-Scrapping.iml" filepath="$PROJECT_DIR$/Jsoup-Scrapping.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
