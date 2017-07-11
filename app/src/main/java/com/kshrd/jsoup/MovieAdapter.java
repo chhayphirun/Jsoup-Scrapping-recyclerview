@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.kshrd.jsoup.listener.MyClickDetail;
 import com.kshrd.jsoup.listener.MyclickListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -21,6 +23,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     private Context context;
     List<Movie> movieList;
     MyclickListener myclickListener;
+    MyClickDetail myClickDetail;
 
 
     public MovieAdapter(Context context, List<Movie> movieList) {
@@ -41,20 +44,27 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         holder.title.setText(movie.getTitle().toString());
         if(movie.getLinktrailer().equals("")){
             holder.trailer.setText("");
-            holder.trailer.setEnabled(false);
-        }else {
+//            holder.trailer.setEnabled(false);
+        }else if(!movie.getLinktrailer().equals("")){
             holder.trailer.setText("Play Trailer");
         }
+        if(movie.getTitle().length()>25){
+            holder.title.setTextSize(15);
+
+        }else {
+            holder.title.setTextSize(20);
+
+        }
         holder.date.setText(movie.getDate());
-        Log.e("oooooadapter",movie.getLinktrailer());
+        Log.e("oooooadapter",movie.getPosterUrl());
               /* Bitmap bitImg=getBitmapFromURL(movie.getPosterUrl());
         holder.imageView.setImageBitmap(bitImg);*/
-       /* Picasso.with(context)
-                .load(movie.getPosterUrl())
+        Picasso.with(context)
+                .load("http://"+movie.getPosterUrl())
                 .noFade()
                 .placeholder(R.drawable.ic_android_black_24dp)
                 .error(R.drawable.ic_android_black_24dp)
-                .into(holder.imageView);*/
+                .into(holder.imageView);
 
 
 
@@ -84,13 +94,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
             title= (TextView) itemView.findViewById(R.id.tvTitle);
             date= (TextView) itemView.findViewById(R.id.date);
             trailer= (TextView) itemView.findViewById(R.id.trailer);
-            trailer.setOnClickListener(this);
-            imageView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
+
         }
 
         @Override
         public void onClick(View v) {
+            TextView textView= (TextView) v.findViewById(R.id.trailer);
+            ImageView imageView= (ImageView) v.findViewById(R.id.ivThumbnail);
+
             myclickListener.onClicked(getAdapterPosition(), v);
+            myclickListener.onDetailclick(getAdapterPosition(), v);
+//            myClickDetail.onClickDetail(getAdapterPosition(),v);
             Log.e("oooooclick","work");
 
         }

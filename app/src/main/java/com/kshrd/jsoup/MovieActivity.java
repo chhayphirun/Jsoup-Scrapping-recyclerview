@@ -78,21 +78,28 @@ public class MovieActivity extends AppCompatActivity implements Callback,Myclick
         final Movie movie=movieList.get(position);
         Log.e("ooo1",movie.getLinktrailer());
         TextView trailer= (TextView) v.findViewById(R.id.trailer);
-        Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse(movie.getLinktrailer()));
-        startActivity(intent);
-        /*trailer.setOnClickListener(new View.OnClickListener() {
+        trailer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse(movie.getLinktrailer()));
                 startActivity(intent);
             }
         });
-    imageView.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse(movie.getLink()));
-            startActivity(intent);
-        }
-    });*/
+    }
+
+
+
+    @Override
+    public void onDetailclick(int position, View v) {
+        final Movie movie=movieList.get(position);
+        ImageView imageView= (ImageView) v.findViewById(R.id.ivThumbnail);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse(movie.getLink()));
+                startActivity(intent);
+            }
+        });
     }
 }

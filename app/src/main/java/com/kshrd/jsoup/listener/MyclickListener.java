@@ -8,4 +8,5 @@ import android.view.View;
 
 public interface MyclickListener {
     void onClicked(int position, View v);
+    void onDetailclick(int position, View v);
 }
