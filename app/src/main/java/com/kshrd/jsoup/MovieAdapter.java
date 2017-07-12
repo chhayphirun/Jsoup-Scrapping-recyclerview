@@ -94,20 +94,25 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
             title= (TextView) itemView.findViewById(R.id.tvTitle);
             date= (TextView) itemView.findViewById(R.id.date);
             trailer= (TextView) itemView.findViewById(R.id.trailer);
-            itemView.setOnClickListener(this);
+
+
+            imageView.setOnClickListener(this);
+            trailer.setOnClickListener(this);
+
 
         }
 
         @Override
         public void onClick(View v) {
-            TextView textView= (TextView) v.findViewById(R.id.trailer);
-            ImageView imageView= (ImageView) v.findViewById(R.id.ivThumbnail);
-
-            myclickListener.onClicked(getAdapterPosition(), v);
-            myclickListener.onDetailclick(getAdapterPosition(), v);
-//            myClickDetail.onClickDetail(getAdapterPosition(),v);
-            Log.e("oooooclick","work");
-
+            Log.e("ooooooclickwork","work");
+            switch (v.getId()){
+                case R.id.ivThumbnail:
+                    myclickListener.onDetailclick(getAdapterPosition(), v);
+                    break;
+                case R.id.trailer:
+                    myclickListener.onClicked(getAdapterPosition(), v);
+                    break;
+            }
         }
     }
 }
